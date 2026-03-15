@@ -477,6 +477,14 @@
     status.className = 'form-status';
 
     try {
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+        from_name: document.getElementById('fname').value,
+        from_email: document.getElementById('femail').value,
+        subject: document.getElementById('fsubject').value,
+        message: document.getElementById('fmessage').value,
+      });
+
+    try {
       await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, e.target);
       btn.textContent = '✅ Message Sent!';
       status.className = 'form-status success';
