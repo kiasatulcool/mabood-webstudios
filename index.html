@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mabood WebStudios — We Build Websites That Work For Your Business</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #16a34a;
+      --green-dark: #15803d;
+      --green-light: #dcfce7;
+      --black: #111111;
+      --gray: #555555;
+      --border: #e5e5e5;
+      --bg: #ffffff;
+      --bg-alt: #f9fafb;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--black);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    /* ── NAVBAR ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--black);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--green); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6rem 1.4rem;
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      border: 2px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: #fff;
+    }
+
+    .btn-primary:hover { background: var(--green-dark); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--green);
+      border-color: var(--green);
+    }
+
+    .btn-outline:hover {
+      background: var(--green-light);
+    }
+
+    .btn-lg {
+      padding: 0.85rem 2rem;
+      font-size: 1rem;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--black);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--border);
+      gap: 0.25rem;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--black);
+      padding: 0.6rem 0.75rem;
+      border-radius: 0.4rem;
+      transition: all 0.2s;
+    }
+
+    .mobile-menu a:hover {
+      background: var(--green-light);
+      color: var(--green);
+    }
+
+    .mobile-menu .btn-primary {
+      margin-top: 0.75rem;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* ── HERO ── */
+    #home {
+      background: var(--bg);
+      padding: 6rem 1.5rem;
+      text-align: center;
+    }
+
+    .hero-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-inner h1 {
+      font-size: clamp(2rem, 5vw, 3.75rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--black);
+    }
+
+    .hero-inner p {
+      margin-top: 1.5rem;
+      font-size: 1.15rem;
+      color: var(--gray);
+    }
+
+    .hero-btns {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── SERVICES ── */
+    #services {
+      background: var(--bg-alt);
+      padding: 5rem 1.5rem;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .section-header p {
+      margin-top: 1rem;
+      font-size: 1.05rem;
+      color: var(--gray);
+    }
+
+    .cards-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.75rem;
+      transition: box-shadow 0.25s;
+    }
+
+    .card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--green-light);
+      border-radius: 0.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--green);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 0.6rem;
+    }
+
+    .card p {
+      font-size: 0.93rem;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* ── WHY CHOOSE US ── */
+    #why {
+      background: var(--bg);
+      padding: 5rem 1.5rem;
+    }
+
+    .benefits-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .benefit {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .benefit-icon {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      background: var(--green-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .benefit-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--green);
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .benefit h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .benefit p {
+      margin-top: 0.35rem;
+      font-size: 0.9rem;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--bg-alt);
+      padding: 5rem 1.5rem;
+    }
+
+    .contact-box {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 2.5rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--black);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 0.65rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--black);
+      transition: border-color 0.2s;
+      outline: none;
+      background: var(--bg);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(22,163,74,0.1);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .form-group.full { grid-column: 1 / -1; }
+
+    .contact-info {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .contact-info p {
+      font-size: 0.9rem;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .contact-info a { color: var(--green); text-decoration: none; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.875rem;
+      color: var(--gray);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-btns .btn-lg { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+  <nav>
+    <a href="#home" class="logo">Mabood WebStudios</a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#why">Portfolio</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-primary nav-cta">Get a Quote</a>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home" onclick="closeMenu()">Home</a>
+    <a href="#services" onclick="closeMenu()">Services</a>
+    <a href="#why" onclick="closeMenu()">Portfolio</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+    <a href="#contact" class="btn btn-primary" onclick="closeMenu()">Get a Quote</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-inner">
+    <h1>We Build Websites That Work For Your Business</h1>
+    <p>Professional web development for small businesses across India</p>
+    <div class="hero-btns">
+      <a href="#why" class="btn btn-primary btn-lg">View Our Work</a>
+      <a href="#contact" class="btn btn-outline btn-lg">Get a Free Quote</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header">
+    <h2>Our Services</h2>
+    <p>Everything you need to establish a powerful online presence</p>
+  </div>
+  <div class="cards-grid">
+
+    <div class="card">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      </div>
+      <h3>Landing Pages</h3>
+      <p>High-converting landing pages designed to capture leads and drive action. Perfect for marketing campaigns and product launches.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </div>
+      <h3>Business Websites</h3>
+      <p>Professional, responsive websites that showcase your brand and services. Built to establish credibility and attract customers.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      </div>
+      <h3>E-Commerce Stores</h3>
+      <p>Full-featured online stores with secure payments, inventory management, and a seamless shopping experience for your customers.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="why">
+  <div class="section-header">
+    <h2>Why Choose Us</h2>
+    <p>We deliver excellence in every project we undertake</p>
+  </div>
+  <div class="benefits-grid">
+
+    <div class="benefit">
+      <div class="benefit-icon">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div>
+        <h3>Fast Delivery</h3>
+        <p>We deliver your project on time, every time. Quick turnaround without compromising quality.</p>
+      </div>
+    </div>
+
+    <div class="benefit">
+      <div class="benefit-icon">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div>
+        <h3>Mobile Responsive</h3>
+        <p>Your website will look perfect on all devices — phones, tablets, and desktops.</p>
+      </div>
+    </div>
+
+    <div class="benefit">
+      <div class="benefit-icon">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div>
+        <h3>Affordable Pricing</h3>
+        <p>Quality web development at prices that fit your budget. No hidden fees or surprises.</p>
+      </div>
+    </div>
+
+    <div class="benefit">
+      <div class="benefit-icon">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div>
+        <h3>Clean Code</h3>
+        <p>Well-structured, maintainable code that's easy to update and scale as your business grows.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <h2>Get In Touch</h2>
+    <p>Have a project in mind? We'd love to hear from you.</p>
+  </div>
+  <div class="contact-box">
+    <form onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Your Name *</label>
+          <input type="text" id="name" placeholder="John Doe" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" placeholder="john@example.com" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" placeholder="Project inquiry" />
+      </div>
+      <div class="form-group">
+        <label for="message">Message *</label>
+        <textarea id="message" placeholder="Tell me about your project..." required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg" style="width:100%">Send Message</button>
+    </form>
+    <div class="contact-info">
+      <p>📧 <a href="mailto:kiasatulmabood@gmail.com">kiasatulmabood@gmail.com</a></p>
+      <p>📱 <a href="tel:+917439938849">+91 74399 38849</a></p>
+      <p>📍 Kolkata, West Bengal, India</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Mabood WebStudios. All rights reserved. Built with ❤️ in Kolkata.</p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('open');
+  }
+
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = '✅ Message Sent!';
+    btn.style.background = '#15803d';
+    setTimeout(() => {
+      btn.textContent = 'Send Message';
+      btn.style.background = '';
+      e.target.reset();
+    }, 3000);
+  }
+</script>
+
+</body>
+</html>
