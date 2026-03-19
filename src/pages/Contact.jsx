@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { checkRateLimit, recordRateLimit, submitContact } from './supabase'
+import { checkRateLimit, recordRateLimit, submitContact } from '../lib/supabase'
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })

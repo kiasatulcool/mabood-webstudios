@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from './AuthProvider'
-import { supabase } from './supabase'
+import { supabase } from '../lib/supabase'
 
 const links = [
   { to: '/', label: 'Home' },
