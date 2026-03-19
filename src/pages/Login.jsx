@@ -12,12 +12,10 @@ export default function Login() {
     e.preventDefault()
     setLoading(true)
     setError(null)
-
     const { error } = await supabase.auth.signInWithPassword({
       email: form.email,
       password: form.password,
     })
-
     if (error) {
       setError(error.message)
       setLoading(false)
@@ -34,10 +32,7 @@ export default function Login() {
         </Link>
         <h2>Welcome back</h2>
         <p>Log in to your account</p>
-
-        <div className="divider">or</div>
-
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} style={{ marginTop: '1.5rem' }}>
           <div className="form-group">
             <label>Email</label>
             <input type="email" value={form.email} onChange={e => setForm(p => ({ ...p, email: e.target.value }))} placeholder="you@example.com" required />
@@ -51,7 +46,6 @@ export default function Login() {
             {loading ? 'Logging in...' : 'Log In'}
           </button>
         </form>
-
         <p style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.875rem', color: '#555' }}>
           Don't have an account? <Link to="/signup" style={{ color: '#16a34a', fontWeight: 600 }}>Sign up</Link>
         </p>
